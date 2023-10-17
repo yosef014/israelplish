@@ -25,8 +25,7 @@ export const actions = {
       commit('setMenu', menu)
      return menu
     } catch (e){
-      console.log('getCart error', e)
-      throw e
+      console.log('getMenu error', e)
     }
   },
 

@@ -1,0 +1,27 @@
+
+.icon {
+  width: 20px;
+  height: 20px;
+  background-position: center;
+  background-size: contain;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  display: inline-block;
+  cursor: pointer;
+  &.icon-play {
+    width: 50px;
+    height: 50px;
+    background-image: url("~assets/icons/play.svg");
+    filter: brightness(0) saturate(100%) invert(85%) sepia(5%) saturate(5589%) hue-rotate(324deg) brightness(93%) contrast(74%);
+  }
+  &.icon-cut {
+    width: 30px;
+    height: 30px;
+    background-image: url("~assets/icons/cut.svg");
+    filter: brightness(0) saturate(100%) invert(85%) sepia(5%) saturate(5589%) hue-rotate(324deg) brightness(93%) contrast(74%);
+  }
+
+}
+

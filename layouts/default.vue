@@ -37,7 +37,7 @@ export default {
   watch: {
     isHamburgerOpen(newValue) {
       const { height } = document.querySelector('.mobile-links-list').getBoundingClientRect()
-      document.querySelector('.menu').style.height = newValue ? (height+20)+'px' : 75+'px'
+      document.querySelector('.menu').style.height = newValue ? (height+64)+'px' : 76+'px'
     }
   },
   async fetch() {

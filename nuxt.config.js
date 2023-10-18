@@ -26,6 +26,7 @@ export default {
   plugins: [
     { src: '~/plugins/api' },
     { src: '~/plugins/helper' },
+    { src: '~/plugins/vue-carousel-3d', mode: 'client' }
   ],
 
   components: true,

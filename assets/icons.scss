@@ -22,6 +22,12 @@
     background-image: url("~assets/icons/cut.svg");
     filter: brightness(0) saturate(100%) invert(85%) sepia(5%) saturate(5589%) hue-rotate(324deg) brightness(93%) contrast(74%);
   }
+  &.icon-hamburger {
+    width: 30px;
+    height: 30px;
+    background-image: url("~assets/icons/hamburger.svg");
+    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(214deg) brightness(101%) contrast(104%);
+  }
 
 }
 

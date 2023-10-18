@@ -1,8 +1,10 @@
 <template>
   <v-app>
-    <div class="menu">
+    <div :class="['menu', { open: isHamburgerOpen }]">
       <div class="menu-container">
-        <div class="hamburger"></div>
+        <div class="hamburger">
+          <i class="icon icon-hamburger" @click="isHamburgerOpen = !isHamburgerOpen"/>
+        </div>
         <ul class="links-list">
           <li v-for="link of menu?.link" class="link">{{link.name}}</li>
         </ul>
@@ -10,6 +12,11 @@
 <!--          <img src="" alt="logo"/>-->
           <sapn>ISRAEL</sapn>
         </picture>
+      </div>
+      <div :class="{'mobile-menu': true, 'mobile-menu-open': isHamburgerOpen}">
+        <ul class="mobile-links-list">
+          <li v-for="link of menu?.link" class="mobile-link">{{link.name}}</li>
+        </ul>
       </div>
     </div>
 <Nuxt/>
@@ -27,11 +34,18 @@ export default {
   computed: {
     ...mapState('global', ['menu']),
   },
+  watch: {
+    isHamburgerOpen(newValue) {
+      const { height } = document.querySelector('.mobile-links-list').getBoundingClientRect()
+      document.querySelector('.menu').style.height = newValue ? (height+20)+'px' : 75+'px'
+    }
+  },
   async fetch() {
     await this.$store.dispatch('global/getMenu')
   },
   data() {
     return {
+      isHamburgerOpen: false
     }
   }
 }
@@ -40,20 +54,68 @@ export default {
 .menu {
   width: 100vw;
   background-color: $clr1;
+  //min-height: 76px;
   height: 76px;
+  transition: all 0.5s;
+  &.open {
+    //height: v-bind(mobileHeightMenu);
+    min-height: fit-content;
+  }
+
+  .mobile-menu {
+    top: -430px;
+    right: 0;
+    flex-direction: column;
+    transition: all 0.5s;
+    .mobile-links-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 0 30px 30px 30px;
+      li {
+        padding: 10px;
+        display: flex;
+        cursor: pointer;
+        color: $clr2;
+        &:hover {
+          background-color: $clr3;
+        }
+      }
+    }
+  }
+  .mobile-menu-open {
+    display: flex;
+    top: 0;
+    right: 0;
+    transition: all 0.5s;
+  }
   .menu-container {
     margin: 0 auto;
     width: $desktop;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 100%;
+    height: 76px;
+    @media (max-width: $desktop) {
+      width: 100%;
+      padding: 0 40px;
+    }
+    .hamburger {
+      .icon{
+        display: none;
+        @media (max-width: $desktop) {
+          display: flex;
+        }
+      }
+    }
 
     .links-list {
       height: 100%;
       display: flex;
-      //gap: 20px;
       list-style-type: none;
+      @media (max-width: $desktop) {
+       display: none;
+      }
       li {
         justify-content: center;
         padding: 10px;
